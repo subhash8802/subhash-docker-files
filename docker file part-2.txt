@@ -1,0 +1,49 @@
+	docker file part-2
+->mkdir /passwords
+->cd /passwords/
+->echo "india@12345" > passwordfile
+->cat passwordfile
+-> apt update && apt install awscli -y
+-> aws configure
+# open aws consol---IAM---user---generate--acess keys--give credentials
+->cd /
+->cd ~
+# open aws console --IAM--USER--PERMISSIONS--ADD PERMISSIONS--ATTACH EXISTING POLICIES DIRECTLY--SERCH EC2READ--ADD PERMISSIONS--ADD
+-> aws ec2 describe-instances
+#to install software java
+-> apt install -y jq
+-> aws ec2 describe-instances |jq
+#giving access to other ubuntu duplicate sever
+->usermod  -aG docker ubuntu
+->  usermod  -aG docker subbu8802
+-> sudo systemctl restart docker
+# open duplicate server
+->docker ps
+#open first server
+-> cat .aws/credentials
+->cat /root/.aws/credentials
+#open duplicate server all this to know how our credentials hacks
+->cat /root/.aws/credentials
+->docker run
+->docker run --rm -dit -v /root/.aws/:/tmp/aws/ nginx:latest
+->docker ps
+->docker exec -it stupefied_allen ls /tmp
+-> docker exec -it stupefied_allen ls /tmp/aws
+->docker exec -it stupefied_allen cat  /tmp/aws/credenti
+#writing a docker file
+->write a docker filr in visual studio code
+->nano dockerdile
+-.paste the code
+->docker build -t subhashdocker .
+#to delete later
+->docker build -t subhashdocker/deletelater:v1 .
+->docker 
+ 
+
+
+
+.
+
+
+
+

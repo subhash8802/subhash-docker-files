@@ -1,0 +1,77 @@
+SDocker volumes & Bind mounts
+google search --- docker volmes ----storage overview
+create a linux server 
+-> docker volume ls
+-> ls  /var/lib/docker/volumes/
+# runnig an example application
+-> docker run  -dit nginx:latest
+->docker ps
+#go to the container
+-> docker exec -it reverent_banach(container name) bash 
+-> pwd
+->mkdir testfolder
+->cd testfolder
+# for creating 10 files
+->for i in {1..10} 
+-> do 
+-> echo $(date) > file$i
+->cat file$i
+-> sleep 1
+->done
+# to go back
+-> control p+q
+->docker ps
+->docker stop reverent_banach
+#line 24 is not recomended
+# google search mount docker aws efs
+# creating docker volumenginx
+->docker volume create testvolume1
+->docker volume ls
+-> ls /var/lib/docker/volumes/
+-> ls /var/lib/docker/volumes/testvolume1/_data/
+# now mounting the above volume to container
+-> docker run --rm -dit -v testvolume1:/myapp nginx:latest
+-> docker exec -it reverent_banach bash
+->cd myapp
+#open dup,icate session
+->sudo su -
+#in duplicate server
+-> docker volume inspect testvolume1
+-> docker volume
+#to watch data in volume
+->watch -n 1 ls /var/lib/docker/volumes/testvolume1/_data/
+#open first created ubuntu server
+for i in {1..10} 
+-> do 
+-> echo $(date) > file$I
+->cat file$I
+-> sleep 2
+->done
+# using above commands..files will be create in backend in volume
+->control p+q
+#stop the container and this is doing if we stop the container also we can able to see our data inthe volumes
+->docker stop quirky_buck
+->docker ps -a
+#to start the container
+->docker run --rm -dit -v testvolume1:/myapp nginx:latest
+-> docker exec -it tab ls /myapp #we can see our files if we start and stop also data will not disapper
+#create amy sql server in duplicate server 
+->docker run --rm -dit  --name mysql  mysql/mysql-server:latest
+->docker ps
+#for  default password of mysql
+-> docker logs mysql
+->docker exec -it mysql bash
+-> mysql -u root -p
+->paste saved password
+# to reset the default password of my sql
+->ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassword';
+#docker mysql volume mapping
+# creating mysql container and mounting the my sql to he required volume
+->https://hub.docker.com/_/mysql -refer this page 
+->docker run --rm -dit --name mysql -v vol2:/var/lib/mysql mysql/mysql-server:latest
+->docker logs mysql
+-> docker exec -it mysql bash
+->mysql -u root -p
+->paste saved password
+#mounting the docker volumes
+->docker run --rm -dit --mount source=testvol3,target=/var/lib/mysql --name mysql mysql/mysql-server:latest
